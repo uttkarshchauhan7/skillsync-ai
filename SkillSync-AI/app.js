@@ -151,7 +151,7 @@
   function createLocalAnalysis(resume, job) {
     const jobSkills = findSkills(job);
     const resumeSkills = findSkills(resume);
-    const requiredSkills = jobSkills.length ? jobSkills : resumeSkills;
+    const requiredSkills = jobSkills;
     const matching = requiredSkills.filter(skill => resumeSkills.includes(skill));
     const missing = requiredSkills.filter(skill => !resumeSkills.includes(skill));
     const score = requiredSkills.length ? Math.round((matching.length / requiredSkills.length) * 100) : 0;
