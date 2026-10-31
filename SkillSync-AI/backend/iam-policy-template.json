@@ -1,0 +1,41 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "SaveResumePDFsToPrivateBucket",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:::REPLACE_WITH_YOUR_PRIVATE_BUCKET_NAME/resumes/*"
+    },
+    {
+      "Sid": "InvokeNovaLiteAPACInferenceProfile",
+      "Effect": "Allow",
+      "Action": [
+        "bedrock:InvokeModel"
+      ],
+      "Resource": "arn:aws:bedrock:ap-south-1:REPLACE_WITH_YOUR_12_DIGIT_ACCOUNT_ID:inference-profile/apac.amazon.nova-lite-v1:0"
+    },
+    {
+      "Sid": "InvokeNovaLiteInAPACProfileDestinationRegions",
+      "Effect": "Allow",
+      "Action": [
+        "bedrock:InvokeModel"
+      ],
+      "Resource": [
+        "arn:aws:bedrock:ap-south-1::foundation-model/amazon.nova-lite-v1:0",
+        "arn:aws:bedrock:ap-northeast-1::foundation-model/amazon.nova-lite-v1:0",
+        "arn:aws:bedrock:ap-northeast-2::foundation-model/amazon.nova-lite-v1:0",
+        "arn:aws:bedrock:ap-northeast-3::foundation-model/amazon.nova-lite-v1:0",
+        "arn:aws:bedrock:ap-southeast-1::foundation-model/amazon.nova-lite-v1:0",
+        "arn:aws:bedrock:ap-southeast-2::foundation-model/amazon.nova-lite-v1:0"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "bedrock:InferenceProfileArn": "arn:aws:bedrock:ap-south-1:REPLACE_WITH_YOUR_12_DIGIT_ACCOUNT_ID:inference-profile/apac.amazon.nova-lite-v1:0"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101323">
+  <meta name="description" content="SkillSync AI compares a resume with a job description and highlights relevant skills. Academic demonstration powered by AWS.">
+  <title>SkillSync AI — Resume Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="SkillSync AI home">
+      <span class="brand-icon"><span></span><span></span><span></span></span>
+      <span class="brand-name">SkillSync<span>AI</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#analyzer">Analyzer</a>
+      <a href="#how-it-works">How it works</a>
+    </nav>
+    <div class="topbar-right">
+      <span class="mode-pill" id="modePill"><i></i><span id="modeLabel">LOCAL DEMO MODE</span></span>
+      <a class="top-cta" href="#analyzer">Try analyzer <span>↗</span></a>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-spark">✦</span> AI-ASSISTED TALENT DISCOVERY</div>
+        <h1>See the skills<br>behind <span class="gradient-text">every resume.</span></h1>
+        <p class="hero-description">Compare a candidate's resume with a job description. Get a clear breakdown of matching skills, missing requirements and evidence-based suggestions.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#analyzer">Analyze a resume <span>→</span></a>
+          <a class="text-link" href="#how-it-works">Explore the workflow <span>↓</span></a>
+        </div>
+        <div class="trust-row">
+          <div class="avatar-stack" aria-hidden="true"><span>✦</span><span>✓</span><span>AI</span></div>
+          <div><strong>Clear. Explainable. Human-led.</strong><small>Designed as an academic cloud-computing project</small></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label="Illustration of a resume analysis report">
+        <div class="visual-orbit orbit-a"></div><div class="visual-orbit orbit-b"></div>
+        <div class="floating-tag tag-top"><span class="tag-dot green-dot"></span> Skills detected <b>12</b></div>
+        <div class="resume-preview">
+          <div class="resume-top"><div class="resume-avatar">JD</div><div class="resume-head"><b>Jordan Davis</b><span>Frontend Developer</span></div><span class="resume-file">PDF</span></div>
+          <div class="resume-line line-wide"></div><div class="resume-line line-mid"></div>
+          <div class="resume-label">CORE SKILLS</div>
+          <div class="resume-chips"><i>JavaScript</i><i>React</i><i>CSS</i><i>Git</i></div>
+          <div class="resume-label">EXPERIENCE</div>
+          <div class="resume-line line-wide"></div><div class="resume-line line-short"></div><div class="resume-line line-mid"></div>
+          <div class="resume-label">PROJECTS</div>
+          <div class="resume-line line-wide"></div><div class="resume-line line-short"></div>
+        </div>
+        <div class="floating-score"><div class="score-mini-ring"><span>86</span></div><div><b>Strong skill match</b><small>AI analysis preview</small></div></div>
+        <div class="floating-tag tag-bottom"><span class="tag-check">✓</span> Evidence-first analysis</div>
+        <div class="visual-glow"></div>
+      </div>
+    </section>
+
+    <section class="stats-strip wrap" aria-label="Project highlights">
+      <div><strong>01</strong><span>Resume at a time</span></div>
+      <div><strong>PDF</strong><span>Text-based resume input</span></div>
+      <div><strong>AI</strong><span>Skills and evidence comparison</span></div>
+      <div><strong>AWS</strong><span>Cloud-ready architecture</span></div>
+    </section>
+
+    <section class="analyzer-section wrap" id="analyzer">
+      <div class="section-intro">
+        <div><div class="eyebrow"><span class="eyebrow-spark">✦</span> THE RESUME ANALYZER</div><h2>Make every application <span class="gradient-text">easier to understand.</span></h2><p>Upload a resume, add the role requirements, and generate a structured comparison.</p></div>
+        <div class="privacy-chip"><span>⌑</span><div><b>Privacy-conscious demo</b><small>Use fictional resumes for classroom testing</small></div></div>
+      </div>
+
+      <div class="analyzer-card">
+        <div class="card-topline"><div class="step-indicator"><span>01</span><div><b>Provide the details</b><small>Two inputs. One clear analysis.</small></div></div><div class="required-label"><span>*</span> Required fields</div></div>
+        <div class="form-grid">
+          <div class="form-panel upload-panel">
+            <div class="field-heading"><span class="field-icon upload-icon">↑</span><div><h3>Candidate resume</h3><p>Upload a PDF to extract skills and experience.</p></div></div>
+            <label class="dropzone" id="dropZone" for="resumeFile" tabindex="0">
+              <input id="resumeFile" type="file" accept="application/pdf,.pdf" hidden>
+              <span class="upload-cloud"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 15.5v3A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5v-3"/></svg></span>
+              <b id="uploadTitle">Drop your resume here</b>
+              <span class="drop-subtitle">or <em>browse files</em> from your computer</span>
+              <span class="file-spec">PDF format <i>•</i> Maximum 3 MB</span>
+            </label>
+            <div class="selected-file" id="fileSelected" hidden><span class="pdf-badge">PDF</span><div class="selected-file-text"><b id="fileName">resume.pdf</b><small id="fileSize">0 KB</small></div><button class="icon-button" id="removeFile" type="button" aria-label="Remove file">×</button></div>
+            <div class="extract-note" id="extractStatus"><span class="note-dot"></span> PDF text is read in your browser before analysis.</div>
+            <button class="sample-link" id="sampleButton" type="button">↳ Use a sample resume instead</button>
+          </div>
+
+          <div class="form-panel jd-panel">
+            <div class="field-heading"><span class="field-icon briefcase-icon">▣</span><div><h3>Job description</h3><p>Paste the role's responsibilities and required skills.</p></div></div>
+            <label class="sr-only" for="jobDescription">Job description</label>
+            <textarea id="jobDescription" maxlength="12000" placeholder="Example: We are looking for a Junior Frontend Developer with HTML, CSS, JavaScript, responsive design, Git and basic REST API knowledge..."></textarea>
+            <div class="textarea-bottom"><span>Tip: include the essential skills for a more useful comparison.</span><b id="charCount">0 / 12,000</b></div>
+            <button class="sample-link" id="jobSampleButton" type="button">↳ Insert sample job description</button>
+          </div>
+        </div>
+        <div class="submit-row"><div class="submit-note"><span>ⓘ</span><span>Scanned image-only PDFs are not supported in this version.</span></div><button class="button button-primary analyze-button" id="analyzeButton" type="button"><span class="button-stars">✧</span> Analyze resume <span class="button-arrow">→</span></button></div>
+        <div class="error-box" id="errorMessage" role="alert" hidden></div>
+        <div class="loading-box" id="loadingPanel" hidden><span class="loader"></span><div><b id="loadingTitle">Analyzing resume</b><small id="loadingSubtitle">Reviewing the resume against the role requirements…</small></div></div>
+      </div>
+    </section>
+
+    <section class="results-section wrap" id="resultsSection" hidden aria-live="polite">
+      <div class="results-head"><div><div class="eyebrow"><span class="eyebrow-spark">✦</span> ANALYSIS REPORT</div><h2>Your resume <span class="gradient-text">breakdown.</span></h2><p>A structured view of the candidate's evidence against the job requirements.</p></div><span class="result-mode" id="resultMode">LOCAL DEMO ESTIMATE</span></div>
+      <div class="results-main">
+        <div class="match-card">
+          <div class="result-overline">ESTIMATED SKILL MATCH</div>
+          <div class="match-meter" id="scoreRing"><div><strong id="matchScore">--</strong><span>/ 100</span></div></div>
+          <h3 id="matchLabel">Skills match</h3><p id="matchSummary">Your analysis summary will appear here.</p>
+          <div class="score-footnote">This score is an estimate of skills evidence, not a prediction of job performance.</div>
+        </div>
+        <div class="result-details">
+          <div class="detail-card"><div class="detail-title"><span class="detail-symbol matched-symbol">✓</span><div><h3>Matching skills</h3><small>Evidence found in the resume</small></div></div><div class="skill-chips" id="matchingSkills"></div></div>
+          <div class="detail-card"><div class="detail-title"><span class="detail-symbol missing-symbol">＋</span><div><h3>Skills to strengthen</h3><small>Requirements not clearly evidenced</small></div></div><div class="skill-chips" id="missingSkills"></div></div>
+        </div>
+      </div>
+      <div class="insight-grid"><div class="insight-card"><div class="insight-heading"><span class="insight-icon strength-icon">✦</span><h3>Key strengths</h3></div><ul id="strengthsList"></ul></div><div class="insight-card"><div class="insight-heading"><span class="insight-icon improve-icon">↗</span><h3>Improvement suggestions</h3></div><ul id="suggestionsList"></ul></div></div>
+      <div class="result-bottom"><div><b>Human review still matters</b><p>AI can miss context or make mistakes. Never use this report alone to accept or reject a candidate.</p></div><button class="button button-secondary" id="newAnalysisButton" type="button">Start a new analysis ↗</button></div>
+    </section>
+
+    <section class="how-section wrap" id="how-it-works">
+      <div class="section-intro how-intro"><div><div class="eyebrow"><span class="eyebrow-spark">✦</span> UNDER THE HOOD</div><h2>Simple for users. <span class="gradient-text">Powered by AWS.</span></h2><p>Each service has one clear responsibility in the application.</p></div><div class="architecture-label">APPLICATION ARCHITECTURE <span>↘</span></div></div>
+      <div class="architecture-card">
+        <div class="architecture-flow">
+          <div class="arch-node"><span class="arch-icon browser-icon">⌘</span><b>Website</b><small>HTML · CSS · JavaScript</small><em>Upload PDF + job description</em></div>
+          <span class="arch-connector"><i>→</i></span>
+          <div class="arch-node lambda-node"><span class="arch-icon lambda-icon">λ</span><b>AWS Lambda</b><small>Python backend</small><em>Validates and coordinates</em></div>
+          <span class="arch-connector split-connector"><i>↙ &nbsp; ↘</i></span>
+          <div class="arch-branches"><div class="arch-node s3-node"><span class="arch-icon s3-icon">▤</span><b>Amazon S3</b><small>Private file storage</small><em>Stores original PDF</em></div><div class="arch-node bedrock-node"><span class="arch-icon bedrock-icon">✧</span><b>Amazon Bedrock</b><small>Foundation model</small><em>Generates analysis</em></div></div>
+        </div>
+        <div class="architecture-caption"><span class="legend-dot"></span> Requests flow from the browser to Lambda; Lambda stores the PDF and calls Bedrock.</div>
+      </div>
+    </section>
+
+    <section class="disclaimer wrap"><span class="disclaimer-icon">ⓘ</span><p><b>Academic demonstration only.</b> SkillSync AI is an educational prototype. Its local demo mode uses a simple keyword comparison; AWS mode uses an AI model through Amazon Bedrock. Neither output is a validated hiring score. Use fictional candidate data for demonstrations.</p></section>
+  </main>
+  <footer class="footer"><a class="brand footer-brand" href="#home"><span class="brand-icon"><span></span><span></span><span></span></span><span class="brand-name">SkillSync<span>AI</span></span></a><span>Cloud Computing Mini Project · 2026</span><a href="#home">Back to top ↑</a></footer>
+</body>
+</html>
